@@ -46,6 +46,8 @@ IBActionSheet offers the same functionality as the UIActionSheet, including thin
 
 - (NSString *)buttonTitleAtIndex:(NSInteger)index;
 
+- (BOOL)visible;
+
 ```
 
 To receive notifications from the IBActionSheet, just add <IBActionSheetDelegate> to your .h file, and implement the following method:
@@ -56,7 +58,7 @@ To receive notifications from the IBActionSheet, just add <IBActionSheetDelegate
 
 ```
 
-It behaves just like the UIActionSheet method, and in fact, it will receive notifications from a UIActionSheet as well
+It behaves just like the UIActionSheet method, and in fact, it will receive notifications from a UIActionSheet as well.
 
 Then you get to the good stuff, to customize the action sheet, you can choose from the following:
 
@@ -89,4 +91,7 @@ Then you get to the good stuff, to customize the action sheet, you can choose fr
 #Included
 I have included a super simple sample project that will show you how it works.  Please let me know if you have any questions or suggestions!
  
+#Requirements
+I have only tested it on the iPhone on iOS 7, I will hopefully have iPad support and check support for other versions of iOS shortly.
+IBActionSheet uses ARC.
 
