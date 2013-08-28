@@ -58,6 +58,34 @@ To receive notifications from the IBActionSheet, just add <IBActionSheetDelegate
 
 It behaves just like the UIActionSheet method, and in fact, it will receive notifications from a UIActionSheet as well
 
+Then you get to the good stuff, to customize the action sheet, you can choose from the following:
+
+```
+// fonts
+- (void)setFont:(UIFont *)font;
+- (void)setTitleFont:(UIFont *)font;
+- (void)setFont:(UIFont *)font forButtonAtIndex:(NSInteger)index;
+
+
+// standard colors
+- (void)setTitleTextColor:(UIColor *)color;
+- (void)setButtonTextColor:(UIColor *)color;
+- (void)setTitleBackgroundColor:(UIColor *)color;
+- (void)setButtonBackgroundColor:(UIColor *)color;
+- (UIColor *)buttonTextColorAtIndex:(NSInteger)index;
+- (UIColor *)buttonBackgroundColorAtIndex:(NSInteger)index;
+- (void)setButtonTextColor:(UIColor *)color forButtonAtIndex:(NSInteger)index;
+- (void)setButtonBackgroundColor:(UIColor *)color forButtonAtIndex:(NSInteger)index;
+
+
+// highlight colors
+- (void)setButtonHighlightBackgroundColor:(UIColor *)color;
+- (void)setButtonHighlightTextColor:(UIColor *)color;
+- (void)setButtonHighlightTextColor:(UIColor *)color forButtonAtIndex:(NSInteger)index;
+- (void)setButtonHighlightBackgroundColor:(UIColor *)color forButtonAtIndex:(NSInteger)index;
+
+```
+
 #Included
 I have included a super simple sample project that will show you how it works.  Please let me know if you have any questions or suggestions!
  
