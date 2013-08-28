@@ -91,7 +91,23 @@ Then you get to the good stuff, to customize the action sheet, you can choose fr
 #Included
 I have included a super simple sample project that will show you how it works.  Please let me know if you have any questions or suggestions!
  
-#Requirements
-I have only tested it on the iPhone on iOS 7, I will hopefully have iPad support and check support for other versions of iOS shortly.
-IBActionSheet uses ARC.
+
+#Known Issues
+ - Has only been tested on iOS 7, I will hopefully have it tested on other versions of iOS soon.
+
+ - Has only been tested on the iPhone, iPad testing will be done shortly.
+ 
+ - IBActionSheet doesn't lock orientation as UIActionSheet does, I haven't found an elegant way to do this yet, if you have any suggestions, please let me know!  For now, you can use the actionSheet.visible property to handle it in your view controller.
+ 
+ - When adding IBActionSheet to a UIView contained in a UINavigation Controller, use:
+
+```
+  [actionSheet showInView:self.navigationController.view]
+```
+instead of:
+
+```
+  [actionSheet showInView:self.view]
+```
+hopefully I can eliminate the need to do this in the future.
 
