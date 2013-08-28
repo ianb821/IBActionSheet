@@ -7,8 +7,6 @@
 //
 //
 // Simple sample project that compares the built in UIActionSheet with IBActionSheet
-// Note: not really made to support landscape, but you can see the top two options if you
-// want to rotate it.
 
 #import "ViewController.h"
 
@@ -50,13 +48,13 @@
 
 - (IBAction)standardUIActionSheetPressed:(id)sender {
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet v Standard UIActionSheet Standard UIActionSheet Standard UIActionSheetStandard UIActionSheet Standard UIActionSheet Standard UIActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Standard UIActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
     [actionSheet showInView:self.view];
 }
 
 - (IBAction)standardIBActionSheetPressed:(id)sender {
     
-    IBActionSheet *actionSheet = [[IBActionSheet alloc] initWithTitle:@"Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet v Standard UIActionSheet Standard UIActionSheet Standard UIActionSheetStandard UIActionSheet Standard UIActionSheet Standard UIActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
+    IBActionSheet *actionSheet = [[IBActionSheet alloc] initWithTitle:@"Standard IBActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -135,6 +133,99 @@
 
 
 #pragma mark - All the other junk for the sample project
+
+- (void)viewWillLayoutSubviews {
+    
+    // or in other words, why I should have used Auto-layout on this project
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        [self setUpForPortrait];
+    } else {
+        [self setUpForLandscape];
+    }
+}
+
+- (void)setUpForPortrait {
+    
+    float halfOfWidth = CGRectGetWidth([UIScreen mainScreen].bounds) / 2.0;
+    float height = CGRectGetHeight([UIScreen mainScreen].bounds);
+    
+    // position the darkend background view
+    self.semiTransparentView.frame = CGRectMake(0, 0, halfOfWidth * 2.0, height);
+    self.semiTransparentView.center = self.view.center;
+    
+    
+    // position the buttons
+    self.standardUIASButton.center = CGPointMake(halfOfWidth, (height / 2.0) - 75);
+    self.standardIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) - 25);
+    self.customIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) + 25);
+    self.funkyIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) + 75);
+
+    
+    // position the custom IBAction creator view and it's components
+    self.customIBActionSheetView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame) - 20, 420);
+    self.customIBActionSheetView.center = self.view.center;
+    self.buttonBackgroundView.center = CGPointMake(148, 43);
+    self.buttonTextColor.center = CGPointMake(92, 37.5);
+    self.redSlider.center = CGPointMake(142, 106);
+    self.greenSlider.center = CGPointMake(142, 142);
+    self.blueSlider.center = CGPointMake(142, 178);
+    self.rLabel.center = CGPointMake(26, 106);
+    self.gLabel.center = CGPointMake(26, 142);
+    self.bLabel.center = CGPointMake(26, 178);
+    self.redTextValue.center = CGPointMake(264.5, 106);
+    self.greenTextValue.center = CGPointMake(264.5, 142);
+    self.blueTextValue.center = CGPointMake(264.5, 178);
+    self.itemColorSegmentedControl.center = CGPointMake(150, 211.5);
+    self.effectLabel.center = CGPointMake(150, 249.5);
+    self.buttonEffectSegmentedControl.center = CGPointMake(150, 282.5);
+    self.showTitleLabel.center = CGPointMake(150, 314);
+    self.titleSegmentedControl.center = CGPointMake(150, 348);
+    self.showCustomIBASButton   .center = CGPointMake(150, 392);
+    
+}
+
+- (void)setUpForLandscape {
+    
+    float halfOfWidth = CGRectGetHeight([UIScreen mainScreen].bounds) / 2.0;
+    float height = CGRectGetWidth([UIScreen mainScreen].bounds);
+    
+    // position buttons
+    self.standardUIASButton.center = CGPointMake(halfOfWidth, (height / 2.0) - 75);
+    self.standardIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) - 25);
+    self.customIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) + 25);
+    self.funkyIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) + 75);
+    
+    
+    // position the custom IBAction creator view and it's components
+    self.customIBActionSheetView.frame = CGRectMake(0, 0, CGRectGetHeight(self.view.frame) - 40, CGRectGetWidth(self.view.frame) - 40);
+    self.customIBActionSheetView.center = CGPointMake(halfOfWidth, height / 2.0);
+    self.buttonBackgroundView.center = CGPointMake(110, 60);
+    self.redSlider.center = CGPointMake(110, 124);
+    self.greenSlider.center = CGPointMake(110, 160);
+    self.blueSlider.center = CGPointMake(110, 196);
+    self.rLabel.center = CGPointMake(10, 124);
+    self.gLabel.center = CGPointMake(10, 160);
+    self.bLabel.center = CGPointMake(10, 196);
+    self.redTextValue.center = CGPointMake(225, 124);
+    self.greenTextValue.center = CGPointMake(225, 160);
+    self.blueTextValue.center = CGPointMake(225, 196);
+    
+    float xToUse = (halfOfWidth * 2.0) - (((halfOfWidth * 2.0) - self.redTextValue.center.x) / 2.0);
+    
+    self.itemColorSegmentedControl.center = CGPointMake(125, 240);
+    self.effectLabel.center = CGPointMake(xToUse - 25, 40);
+    self.buttonEffectSegmentedControl.center = CGPointMake(xToUse - 25, 80);
+    self.showTitleLabel.center = CGPointMake(xToUse, 150);
+    self.titleSegmentedControl.center = CGPointMake(xToUse, 180);
+    self.showCustomIBASButton   .center = CGPointMake(xToUse, 240);
+    
+    
+    // position the darkend background view
+    self.semiTransparentView.frame = CGRectMake(0, 0, halfOfWidth * 2.0, height);
+    self.semiTransparentView.center = self.customIBActionSheetView.center;
+    
+    
+}
 
 - (void)dismissCustomIBActionPanel {
     
@@ -229,6 +320,7 @@
     [self addBorderToButton:self.standardIBASButton];
     [self addBorderToButton:self.customIBASButton];
     [self addBorderToButton:self.funkyIBASButton];
+
 }
 
 - (void)addBorderToButton:(UIButton *)button {

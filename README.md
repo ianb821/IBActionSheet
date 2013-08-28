@@ -95,7 +95,7 @@ I have included a super simple sample project that will show you how it works.  
 #Known Issues
  - Has only been tested on iOS 7, I will hopefully have it tested on other versions of iOS soon.
 
- - Has only been tested on the iPhone, iPad testing will be done shortly.
+ - Has only been tested on the iPhone physically.  iPad testing was done on the simulator.  It follows the iPhone style UIActionSheet instead of the iPad one.  I personally prefer this behavior, but if there is a demand, I'm happy to make it follow the UIActionSheet behavior for iPad, just let me know!
  
  - IBActionSheet doesn't lock orientation as UIActionSheet does, I haven't found an elegant way to do this yet, if you have any suggestions, please let me know!  For now, you can use the actionSheet.visible property to handle it in your view controller.
  

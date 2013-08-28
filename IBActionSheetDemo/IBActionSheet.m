@@ -178,20 +178,6 @@
 - (void)setUpTheActionSheet {
     
     float height;
-    
-    if (self.hasCancelButton) {
-        height = 59.5;
-    } else {
-        height = 104.0;
-    }
-
-    if (self.buttons.count) {
-        height += (self.buttons.count * 44.5);
-    }
-    if (self.titleView) {
-        height += CGRectGetHeight(self.titleView.frame) - 44;
-    }
-    
     float width;
     
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
@@ -200,33 +186,99 @@
         width = CGRectGetHeight([UIScreen mainScreen].bounds);
     }
     
-    self.frame = CGRectMake(0, 0, width, height);
-    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
-    
-    int whereToStop;
-    if (self.hasCancelButton) {
-        [self addSubview:[self.buttons lastObject]];
-        [[self.buttons lastObject] setCenter:pointOfReference];
-        [[self.buttons firstObject] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
-        pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
-        whereToStop = self.buttons.count - 2;
+    // slight adjustment to take into account non-retina devices
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]
+        && [[UIScreen mainScreen] scale] == 2.0) {
+        
+        // setup spacing for retina devices
+        if (self.hasCancelButton) {
+            height = 59.5;
+        } else {
+            height = 104.0;
+        }
+        
+        if (self.buttons.count) {
+            height += (self.buttons.count * 44.5);
+        }
+        if (self.titleView) {
+            height += CGRectGetHeight(self.titleView.frame) - 44;
+        }
+        
+        self.frame = CGRectMake(0, 0, width, height);
+        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
+        CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
+        
+        int whereToStop;
+        if (self.hasCancelButton) {
+            [self addSubview:[self.buttons lastObject]];
+            [[self.buttons lastObject] setCenter:pointOfReference];
+            [[self.buttons firstObject] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
+            pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
+            whereToStop = self.buttons.count - 2;
+        } else {
+            [self addSubview:[self.buttons lastObject]];
+            [[self.buttons lastObject] setCenter:pointOfReference];
+            whereToStop = self.buttons.count - 1;
+        }
+        
+        for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
+            [self addSubview:[self.buttons objectAtIndex:i]];
+            [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (44.5 * j))];
+        }
+        
+        if (self.titleView) {
+            [self addSubview:self.titleView];
+            self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0);
+        }
+        
     } else {
-        [self addSubview:[self.buttons lastObject]];
-        [[self.buttons lastObject] setCenter:pointOfReference];
-        whereToStop = self.buttons.count - 1;
+        
+        // setup spacing for non-retina devices
+        
+        if (self.hasCancelButton) {
+            height = 60.0;
+        } else {
+            height = 104.0;
+        }
+        
+        if (self.buttons.count) {
+            height += (self.buttons.count * 45);
+        }
+        if (self.titleView) {
+            height += CGRectGetHeight(self.titleView.frame) - 45;
+        }
+        
+        self.frame = CGRectMake(0, 0, width, height);
+        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
+        CGPoint pointOfReference = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) - 30);
+        
+        int whereToStop;
+        if (self.hasCancelButton) {
+            [self addSubview:[self.buttons lastObject]];
+            [[self.buttons lastObject] setCenter:pointOfReference];
+            [[self.buttons firstObject] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
+            pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
+            whereToStop = self.buttons.count - 2;
+        } else {
+            [self addSubview:[self.buttons lastObject]];
+            [[self.buttons lastObject] setCenter:pointOfReference];
+            whereToStop = self.buttons.count - 1;
+        }
+        
+        for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
+            [self addSubview:[self.buttons objectAtIndex:i]];
+            [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (45 * j))];
+        }
+        
+        if (self.titleView) {
+            [self addSubview:self.titleView];
+            self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0);
+        }
     }
     
-    for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
-        [self addSubview:[self.buttons objectAtIndex:i]];
-        [[self.buttons objectAtIndex:i] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - (44.5 * j))];
-    }
-    
-    if (self.titleView) {
-        [self addSubview:self.titleView];
-        self.titleView.center = CGPointMake(self.center.x, CGRectGetHeight(self.titleView.frame) / 2.0);
-    }
 }
 
 - (void)setUpTheActions {

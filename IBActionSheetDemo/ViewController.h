@@ -43,6 +43,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *blueTextValue;
 @property (strong, nonatomic) IBOutlet UILabel *greenTextValue;
 @property (strong, nonatomic) IBOutlet UILabel *buttonTextColor;
+@property (strong, nonatomic) IBOutlet UILabel *rLabel;
+@property (strong, nonatomic) IBOutlet UILabel *gLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bLabel;
+@property (strong, nonatomic) IBOutlet UILabel *effectLabel;
+@property (strong, nonatomic) IBOutlet UILabel *showTitleLabel;
 
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *titleSegmentedControl;
