@@ -6,7 +6,7 @@ Fully customizable iOS 7 UIActionSheet replacement.
 
 ![Colored](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Colored.png)
 
-![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky.png)
+![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
 
 
 ##Features
