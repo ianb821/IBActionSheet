@@ -70,6 +70,9 @@ It behaves just like the UIActionSheet method, and in fact, it will receive noti
 Then you get to the good stuff, to customize the action sheet, you can choose from the following:
 
 ```
+// effects
+- (void)setButtonResponse:(IBActionSheetButtonResponse)response;
+
 // fonts
 - (void)setFont:(UIFont *)font;
 - (void)setTitleFont:(UIFont *)font;
