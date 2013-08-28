@@ -1,16 +1,15 @@
-##IBActionSheet
+#IBActionSheet
 
 Fully customizable iOS 7 UIActionSheet replacement.
 
-![Standard](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Standard.png)
-
-![Colored](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Colored.png)
-
-![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
-
 
 ##Features
-By default, IBActionSheet mimics the iOS 7 UIActionSheet exactly.  You then have the option to change:
+By default, IBActionSheet mimics the iOS 7 UIActionSheet exactly:
+
+![Standard](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Standard.png)
+
+
+You then have the option to change:
 
  - The button text color
  - The button background color
@@ -18,6 +17,14 @@ By default, IBActionSheet mimics the iOS 7 UIActionSheet exactly.  You then have
  - The button backround highlight color
  - The button and title font
  - The effect when a button is pressed
+ 
+ A simple example is shown here:
+ 
+ ![Colored](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Colored.png)
+ 
+ An extreme example with every element of the action sheet customized is show here:
+ 
+ ![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
  
 All but the 'button press' effects can be customized for the whole action sheet, or for individual buttons.  The 'button press' effects current include:
 
@@ -88,11 +95,11 @@ Then you get to the good stuff, to customize the action sheet, you can choose fr
 
 ```
 
-#Included
+##Included
 I have included a super simple sample project that will show you how it works.  Please let me know if you have any questions or suggestions!
  
 
-#Known Issues
+##Known Issues
  - Has only been tested on iOS 7, I will hopefully have it tested on other versions of iOS soon.
 
  - Has only been tested on the iPhone physically.  iPad testing was done on the simulator.  It follows the iPhone style UIActionSheet instead of the iPad one.  I personally prefer this behavior, but if there is a demand, I'm happy to make it follow the UIActionSheet behavior for iPad, just let me know!
