@@ -18,13 +18,13 @@ You then have the option to change:
  - The button and title font
  - The effect when a button is pressed
  
- A simple example is shown here:
+####A simple example is shown here:
  
- ![Colored](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Colored.png)
+![Colored](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Colored.png)
  
- An extreme example with every element of the action sheet customized is show here:
+####An extreme example with every element of the action sheet customized is show here (landscape):
  
- ![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
+![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
  
 All but the 'button press' effects can be customized for the whole action sheet, or for individual buttons.  The 'button press' effects current include:
 
