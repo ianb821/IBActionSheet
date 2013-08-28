@@ -592,9 +592,21 @@
 - (id)initWithTitle:(NSString *)title {
     
     self = [self init];
+    
+    float width;
+    float labelBuffer;
+    
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        width = CGRectGetWidth([UIScreen mainScreen].bounds);
+        labelBuffer = 44;
+    } else {
+        width = CGRectGetHeight([UIScreen mainScreen].bounds);
+        labelBuffer = 24;
+    }
+    
     self.alpha = .95f;
     self.backgroundColor = [UIColor whiteColor];
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 44)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width - labelBuffer, 44)];
     self.titleLabel.font = [UIFont systemFontOfSize:13];
     self.titleLabel.textColor = [UIColor colorWithWhite:0.564 alpha:1.000];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -602,13 +614,7 @@
     self.titleLabel.text = title;
     [self.titleLabel sizeToFit];
     
-    float width;
-    
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        width = CGRectGetWidth([UIScreen mainScreen].bounds);
-    } else {
-        width = CGRectGetHeight([UIScreen mainScreen].bounds);
-    }
+   
     
     if ((CGRectGetHeight(self.titleLabel.frame) + 30) < 44) {
         self.frame = CGRectMake(0, 0, width - 16, 44);

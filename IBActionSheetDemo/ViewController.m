@@ -50,13 +50,13 @@
 
 - (IBAction)standardUIActionSheetPressed:(id)sender {
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Standard UIActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet v Standard UIActionSheet Standard UIActionSheet Standard UIActionSheetStandard UIActionSheet Standard UIActionSheet Standard UIActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
     [actionSheet showInView:self.view];
 }
 
 - (IBAction)standardIBActionSheetPressed:(id)sender {
     
-    IBActionSheet *actionSheet = [[IBActionSheet alloc] initWithTitle:@"Standard IBActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
+    IBActionSheet *actionSheet = [[IBActionSheet alloc] initWithTitle:@"Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet Standard UIActionSheet v Standard UIActionSheet Standard UIActionSheet Standard UIActionSheetStandard UIActionSheet Standard UIActionSheet Standard UIActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
     [actionSheet showInView:self.view];
 }
 
