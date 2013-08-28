@@ -104,6 +104,8 @@ I have included a super simple sample project that will show you how it works.  
 
 ##Known Issues
  - Has only been tested on iOS 7, I will hopefully have it tested on other versions of iOS soon.
+ 
+ - Having only been tested for iOS 7, the project has only been tested with Xcode 5 Developer Preview.  A project created in Xcode 4.6 will be added soon.
 
  - Has only been tested on the iPhone physically.  iPad testing was done on the simulator.  It follows the iPhone style UIActionSheet instead of the iPad one.  I personally prefer this behavior, but if there is a demand, I'm happy to make it follow the UIActionSheet behavior for iPad, just let me know!
  
