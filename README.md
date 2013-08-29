@@ -29,12 +29,12 @@ You then have the option to change:
  
 ![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
  
-All but the 'button press' effects can be customized for the whole action sheet, or for individual buttons.  The 'button press' effects current include:
+All but the 'button press' effects can be customized for the whole action sheet, or for individual buttons and title.  The 'button press' effects current include:
 
  - Fade
- - Highlight
- - Shrink Away effect
- - Reverse button background and text color
+ - Highlight (With designated background and text highlight colors)
+ - Shrink Effect
+ - Reverse Colors (Same as highlight, but it reverses background and text colors)
  
  
 ##Usage
@@ -60,7 +60,8 @@ IBActionSheet offers the same functionality as the UIActionSheet, including thin
 
 ```
 
-To receive notifications from the IBActionSheet, just add <IBActionSheetDelegate> to your .h file, and implement the following method:
+To receive notifications from the IBActionSheet, just add 
+```<IBActionSheetDelegate>``` to your view controller's header file, and implement the following method:
 
 
 ```
@@ -114,7 +115,7 @@ I have included a super simple sample project that will show you how it works.  
 
  - On iPad, it follows the iPhone style UIActionSheet instead of the iPad one.  I personally prefer this behavior, but if there is a demand, I'm happy to make it follow the UIActionSheet behavior for iPad, just let me know!
  
- - IBActionSheet doesn't lock orientation as UIActionSheet does.  You can use the actionSheet.visible property to lock it yourself, or you call:
+ - IBActionSheet doesn't lock orientation as UIActionSheet does.  I haven't found an elegant solution to this just yet.  You can use the actionSheet.visible property to lock it yourself, or you call:
  
 ```
   [actionSheet rotateToCurrentOrientation];
