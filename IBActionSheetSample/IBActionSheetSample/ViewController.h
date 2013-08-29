@@ -22,6 +22,8 @@
 - (IBAction)itemColorSegmentedControlChanged:(UISegmentedControl *)sender;
 
 
+@property IBActionSheet *standardIBAS, *customIBAS, *funkyIBAS;
+
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;
 @property (strong, nonatomic) IBOutlet UIButton *funkyIBASButton;
 @property (strong, nonatomic) IBOutlet UIButton *customIBASButton;

@@ -468,6 +468,48 @@
     }
 }
 
+- (void)rotateToCurrentOrientation {
+    
+    float width;
+    float height;
+    
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        
+        width = CGRectGetWidth([UIScreen mainScreen].bounds);
+        height = CGRectGetHeight([UIScreen mainScreen].bounds);
+        
+        
+            for (IBActionSheetButton * button in self.buttons) {
+                [button resizeForPortraitOrientation];
+            }
+        
+            [self.titleView resizeForPortraitOrientation];
+            [self setUpTheActionSheet];
+        
+        
+        
+        
+    } else {
+        
+        width = CGRectGetHeight([UIScreen mainScreen].bounds);
+        height = CGRectGetWidth([UIScreen mainScreen].bounds);
+
+        
+        for (IBActionSheetButton * button in self.buttons) {
+            [button resizeForLandscapeOrientation];
+        }
+        [self.titleView resizeForLandscapeOrientation];
+        [self setUpTheActionSheet];
+        
+        
+    }
+    
+    self.transparentView.frame = CGRectMake(0, 0, width, height);
+    self.transparentView.center = CGPointMake(width / 2.0, height / 2.0);
+    self.center = self.center = CGPointMake(width / 2.0, height - CGRectGetHeight(self.frame) / 2.0);
+    
+}
+
 #pragma mark IBActionSheet Color methods
 
 - (void)setButtonTextColor:(UIColor *)color {
@@ -603,30 +645,89 @@
     
     self.alpha = 0.95f;
     
+    self.cornerType = IBActionSheetButtonCornerTypeNoCornersRounded;
+    
     return self;
 }
 
 - (id)initWithTopCornersRounded {
     self = [self init];
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
+    self.cornerType = IBActionSheetButtonCornerTypeTopCornersRounded;
     return self;
 }
 
 - (id)initWithBottomCornersRounded {
     self = [self init];
     [self setMaskTo:self byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight];
+    self.cornerType = IBActionSheetButtonCornerTypeBottomCornersRounded;
     return self;
 }
 
 - (id)initWithAllCornersRounded {
     self = [self init];
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight];
+    self.cornerType = IBActionSheetButtonCornerTypeAllCornersRounded;
     return self;
 }
 
 
 - (void)setTextColor:(UIColor *)color {
     [self setTitleColor:color forState:UIControlStateAll];
+}
+
+- (void)resizeForPortraitOrientation {
+    
+    self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
+    
+    switch (self.cornerType) {
+        case IBActionSheetButtonCornerTypeNoCornersRounded:
+            break;
+            
+        case IBActionSheetButtonCornerTypeTopCornersRounded: {
+            [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
+            break;
+        }
+        case IBActionSheetButtonCornerTypeBottomCornersRounded: {
+            [self setMaskTo:self byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight];
+            break;
+        }
+            
+        case IBActionSheetButtonCornerTypeAllCornersRounded: {
+            [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void)resizeForLandscapeOrientation {
+    self.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
+    
+    switch (self.cornerType) {
+        case IBActionSheetButtonCornerTypeNoCornersRounded:
+            break;
+            
+        case IBActionSheetButtonCornerTypeTopCornersRounded: {
+            [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
+            break;
+        }
+        case IBActionSheetButtonCornerTypeBottomCornersRounded: {
+            [self setMaskTo:self byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight];
+            break;
+        }
+            
+        case IBActionSheetButtonCornerTypeAllCornersRounded: {
+            [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight];
+            break;
+        }
+            
+        default:
+            break;
+    }
+
 }
 
 - (void)setMaskTo:(UIView*)view byRoundingCorners:(UIRectCorner)corners
@@ -685,6 +786,20 @@
     self.titleLabel.center = self.center;
     
     return self;
+}
+
+- (void)resizeForPortraitOrientation {
+    
+    self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 24, 44);
+    [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
+}
+
+- (void)resizeForLandscapeOrientation {
+    
+    self.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 44, 44);
+    [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
 - (void)setMaskTo:(UIView*)view byRoundingCorners:(UIRectCorner)corners

@@ -32,6 +32,14 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonResponse) {
     IBActionSheetButtonResponseHighlightsOnPress
 };
 
+typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
+    
+    IBActionSheetButtonCornerTypeNoCornersRounded,
+    IBActionSheetButtonCornerTypeTopCornersRounded,
+    IBActionSheetButtonCornerTypeBottomCornersRounded,
+    IBActionSheetButtonCornerTypeAllCornersRounded
+    
+};
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
@@ -63,6 +71,7 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonResponse) {
 
 - (NSInteger)numberOfButtons;
 - (NSString *)buttonTitleAtIndex:(NSInteger)index;
+- (void)rotateToCurrentOrientation;
 
 
 // fonts
@@ -102,12 +111,16 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonResponse) {
 
 @interface IBActionSheetButton : UIButton
 
+
 - (id)initWithTopCornersRounded;
 - (id)initWithAllCornersRounded;
 - (id)initWithBottomCornersRounded;
+- (void)resizeForPortraitOrientation;
+- (void)resizeForLandscapeOrientation;
 - (void)setTextColor:(UIColor *)color;
 
 @property NSInteger index;
+@property IBActionSheetButtonCornerType cornerType;
 @property UIColor *originalTextColor, *highlightTextColor;
 @property UIColor *originalBackgroundColor, *highlightBackgroundColor;
 
@@ -119,7 +132,11 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonResponse) {
 
 @interface IBActionSheetTitleView : UIView
 
+- (void)resizeForPortraitOrientation;
+- (void)resizeForLandscapeOrientation;
 - (id)initWithTitle:(NSString *)title;
+
+
 
 @property UILabel *titleLabel;
 

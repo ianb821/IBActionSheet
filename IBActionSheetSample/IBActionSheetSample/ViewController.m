@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
     
+    
     [self makeButtonsLookSomeWhatLikeButtons];
     
     self.backgroundColor = [UIColor colorWithRed:0.037 green:0.172 blue:0.261 alpha:1.0f];
@@ -54,8 +55,8 @@
 
 - (IBAction)standardIBActionSheetPressed:(id)sender {
     
-    IBActionSheet *actionSheet = [[IBActionSheet alloc] initWithTitle:@"Standard IBActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
-    [actionSheet showInView:self.view];
+    self.standardIBAS = [[IBActionSheet alloc] initWithTitle:@"Standard IBActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
+    [self.standardIBAS showInView:self.view];
 }
 
 - (IBAction)showCustomSheetButtonPressed:(id)sender {
@@ -65,31 +66,31 @@
         title = @"This is a title!";
     }
     
-    IBActionSheet *customIBActionSheet = [[IBActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Some" otherButtonTitles:@"Other", @"Buttons", nil];
+    self.customIBAS = [[IBActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Some" otherButtonTitles:@"Other", @"Buttons", nil];
     
-    [customIBActionSheet setButtonBackgroundColor:self.backgroundColor];
-    [customIBActionSheet setButtonTextColor:self.textColor];
+    [self.customIBAS setButtonBackgroundColor:self.backgroundColor];
+    [self.customIBAS setButtonTextColor:self.textColor];
     
     if (self.buttonEffectSegmentedControl.selectedSegmentIndex == 0) {
         
-        customIBActionSheet.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
+        self.customIBAS.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
         
     } else if (self.buttonEffectSegmentedControl.selectedSegmentIndex == 1) {
         
-        customIBActionSheet.buttonResponse = IBActionSheetButtonResponseReversesColorsOnPress;
+        self.customIBAS.buttonResponse = IBActionSheetButtonResponseReversesColorsOnPress;
         
     } else if (self.buttonEffectSegmentedControl.selectedSegmentIndex == 2) {
         
-        customIBActionSheet.buttonResponse = IBActionSheetButtonResponseShrinksOnPress;
+        self.customIBAS.buttonResponse = IBActionSheetButtonResponseShrinksOnPress;
         
     } else {
         
-        customIBActionSheet.buttonResponse = IBActionSheetButtonResponseHighlightsOnPress;
-        [customIBActionSheet setButtonHighlightTextColor:[UIColor whiteColor]];
-        [customIBActionSheet setButtonHighlightBackgroundColor:[UIColor redColor]];
+        self.customIBAS.buttonResponse = IBActionSheetButtonResponseHighlightsOnPress;
+        [self.customIBAS setButtonHighlightTextColor:[UIColor whiteColor]];
+        [self.customIBAS setButtonHighlightBackgroundColor:[UIColor redColor]];
     }
     
-    [customIBActionSheet showInView:self.view];
+    [self.customIBAS showInView:self.view];
     
 }
 
@@ -97,30 +98,30 @@
     
     // To show just how customizable it can be....I'm sorry
     
-    IBActionSheet *actionSheet = [[IBActionSheet alloc] initWithTitle:@"I'm deeply sorry\nthat you had" delegate:self cancelButtonTitle:@"Make it Stop" destructiveButtonTitle:nil otherButtonTitles:@"To", @"See", @"This", nil];
+    self.funkyIBAS = [[IBActionSheet alloc] initWithTitle:@"I'm deeply sorry\nthat you had" delegate:self cancelButtonTitle:@"Make it Stop" destructiveButtonTitle:nil otherButtonTitles:@"To", @"See", @"This", nil];
     
-    actionSheet.buttonResponse = IBActionSheetButtonResponseShrinksOnPress;
+    self.funkyIBAS.buttonResponse = IBActionSheetButtonResponseShrinksOnPress;
     
-    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0.258 green:1.000 blue:0.499 alpha:1.000]];
-    [actionSheet setButtonTextColor:[UIColor whiteColor]];
-    [actionSheet setTitleBackgroundColor:[UIColor orangeColor]];
-    [actionSheet setTitleTextColor:[UIColor blackColor]];
-    [actionSheet setTitleFont:[UIFont fontWithName:@"Noteworthy-Bold" size:10]];
+    [self.funkyIBAS setButtonBackgroundColor:[UIColor colorWithRed:0.258 green:1.000 blue:0.499 alpha:1.000]];
+    [self.funkyIBAS setButtonTextColor:[UIColor whiteColor]];
+    [self.funkyIBAS setTitleBackgroundColor:[UIColor orangeColor]];
+    [self.funkyIBAS setTitleTextColor:[UIColor blackColor]];
+    [self.funkyIBAS setTitleFont:[UIFont fontWithName:@"Noteworthy-Bold" size:10]];
     
-    [actionSheet setButtonTextColor:[UIColor orangeColor] forButtonAtIndex:0];
-    [actionSheet setButtonBackgroundColor:[UIColor purpleColor] forButtonAtIndex:0];
-    [actionSheet setFont:[UIFont fontWithName:@"HelveticaNeue-Italic" size:22] forButtonAtIndex:0];
+    [self.funkyIBAS setButtonTextColor:[UIColor orangeColor] forButtonAtIndex:0];
+    [self.funkyIBAS setButtonBackgroundColor:[UIColor purpleColor] forButtonAtIndex:0];
+    [self.funkyIBAS setFont:[UIFont fontWithName:@"HelveticaNeue-Italic" size:22] forButtonAtIndex:0];
     
-    [actionSheet setButtonTextColor:[UIColor lightGrayColor] forButtonAtIndex:1];
-    [actionSheet setButtonBackgroundColor:[UIColor yellowColor] forButtonAtIndex:1];
-    [actionSheet setFont:[UIFont fontWithName:@"Chalkduster" size:22] forButtonAtIndex:1];
+    [self.funkyIBAS setButtonTextColor:[UIColor lightGrayColor] forButtonAtIndex:1];
+    [self.funkyIBAS setButtonBackgroundColor:[UIColor yellowColor] forButtonAtIndex:1];
+    [self.funkyIBAS setFont:[UIFont fontWithName:@"Chalkduster" size:22] forButtonAtIndex:1];
     
     
-    [actionSheet setButtonTextColor:[UIColor greenColor] forButtonAtIndex:2];
-    [actionSheet setButtonBackgroundColor:[UIColor brownColor] forButtonAtIndex:2];
-    [actionSheet setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:22] forButtonAtIndex:3];
+    [self.funkyIBAS setButtonTextColor:[UIColor greenColor] forButtonAtIndex:2];
+    [self.funkyIBAS setButtonBackgroundColor:[UIColor brownColor] forButtonAtIndex:2];
+    [self.funkyIBAS setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:22] forButtonAtIndex:3];
     
-    [actionSheet showInView:self.view];
+    [self.funkyIBAS showInView:self.view];
 }
 
 #pragma mark - IBActionSheet/UIActionSheet Delegate Method
@@ -136,13 +137,22 @@
 
 - (void)viewWillLayoutSubviews {
     
-    NSLog(@"NAILED IT");
-    // or in other words, why I should have used Auto-layout on this project
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         [self setUpForPortrait];
     } else {
         [self setUpForLandscape];
     }
+    
+    if (self.standardIBAS.visible) {
+        [self.standardIBAS rotateToCurrentOrientation];
+    }
+    if (self.customIBAS.visible) {
+        [self.customIBAS rotateToCurrentOrientation];
+    }
+    if (self.funkyIBAS.visible) {
+        [self.funkyIBAS rotateToCurrentOrientation];
+    }
+    
 }
 
 - (void)setUpForPortrait {

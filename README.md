@@ -4,7 +4,10 @@ Fully customizable iOS 7 UIActionSheet replacement.
 
 
 ##Features
-By default, IBActionSheet mimics the iOS 7 UIActionSheet exactly:
+- Works on iOS 7, iOS 6, and iOS 5
+- By default, IBActionSheet mimics the iOS 7 UIActionSheet exactly:
+
+ 
 
 ![Standard](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Standard.png)
 
@@ -70,6 +73,9 @@ It behaves just like the UIActionSheet method, and in fact, it will receive noti
 Then you get to the good stuff, to customize the action sheet, you can choose from the following:
 
 ```
+// rotation
+- (void)rotateToCurrentOrientation;
+
 // effects
 - (void)setButtonResponse:(IBActionSheetButtonResponse)response;
 
@@ -100,26 +106,30 @@ Then you get to the good stuff, to customize the action sheet, you can choose fr
 
 ##Included
 I have included a super simple sample project that will show you how it works.  Please let me know if you have any questions or suggestions!
+
+***Note: If you are running this app on iOS 7, make sure that you change the deployment target to 7.0 before installing it on a device running 7.0.  If not, the animation will be slightly off
  
 
 ##Known Issues
- - Has only been tested on iOS 7, I will hopefully have it tested on other versions of iOS soon.
- 
- - Having only been tested for iOS 7, the project has only been tested with Xcode 5 Developer Preview.  A project created in Xcode 4.6 will be added soon.
 
- - Has only been tested on the iPhone physically.  iPad testing was done on the simulator.  It follows the iPhone style UIActionSheet instead of the iPad one.  I personally prefer this behavior, but if there is a demand, I'm happy to make it follow the UIActionSheet behavior for iPad, just let me know!
+ - On iPad, it follows the iPhone style UIActionSheet instead of the iPad one.  I personally prefer this behavior, but if there is a demand, I'm happy to make it follow the UIActionSheet behavior for iPad, just let me know!
  
- - IBActionSheet doesn't lock orientation as UIActionSheet does, I haven't found an elegant way to do this yet, if you have any suggestions, please let me know!  For now, you can use the actionSheet.visible property to handle it in your view controller.
+ - IBActionSheet doesn't lock orientation as UIActionSheet does.  You can use the actionSheet.visible property to lock it yourself, or you call:
+ 
+```
+  [actionSheet rotateToCurrentOrientation];
+```
+ from whatever method you are using to detect rotation and it will resize accordingly. 
  
  - When adding IBActionSheet to a UIView contained in a UINavigation Controller, use:
 
 ```
-  [actionSheet showInView:self.navigationController.view]
+  [actionSheet showInView:self.navigationController.view];
 ```
 instead of:
 
 ```
-  [actionSheet showInView:self.view]
+  [actionSheet showInView:self.view];
 ```
 hopefully I can eliminate the need to do this in the future.
 

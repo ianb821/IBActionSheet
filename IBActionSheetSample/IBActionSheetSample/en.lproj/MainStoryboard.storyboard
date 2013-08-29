@@ -242,7 +242,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="bLabel" destination="xTr-hp-87i" id="OM1-pP-fAE"/>
+                        <outlet property="bLabel" destination="xTr-hp-87i" id="Crq-uV-WOX"/>
                         <outlet property="blueSlider" destination="sWK-Zz-0SU" id="8D6-cX-uDl"/>
                         <outlet property="blueTextValue" destination="eFG-PI-Wyn" id="ENR-ii-y2V"/>
                         <outlet property="buttonBackgroundView" destination="k0S-au-2fI" id="u8R-2y-Ixm"/>
