@@ -50,11 +50,6 @@
 
 
 - (id)initWithTitle:(NSString *)title delegate:(id<IBActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitles:(NSString *)otherTitles, ... {
-    
-    self = [self init];
-    self.delegate = delegate;
-    self.backgroundColor = [UIColor clearColor];
-    
     NSMutableArray *titles = [[NSMutableArray alloc] init];
     
     if (otherTitles) {
@@ -66,6 +61,17 @@
         }
         va_end(args);
     }
+    return [self initWithTitle:title delegate:delegate cancelButtonTitle:cancelTitle destructiveButtonTitle:destructiveTitle otherButtonTitlesArray:titles];
+}
+
+
+- (id)initWithTitle:(NSString *)title delegate:(id<IBActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitlesArray:(NSArray *)otherTitlesArray {
+    
+    self = [self init];
+    self.delegate = delegate;
+    self.backgroundColor = [UIColor clearColor];
+    
+    NSMutableArray* titles = [otherTitlesArray mutableCopy];
     
     if (destructiveTitle) {
         [titles insertObject:destructiveTitle atIndex:0];
