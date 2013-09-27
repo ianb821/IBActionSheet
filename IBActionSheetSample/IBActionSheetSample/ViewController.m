@@ -54,8 +54,8 @@
 }
 
 - (IBAction)standardIBActionSheetPressed:(id)sender {
-    
-    self.standardIBAS = [[IBActionSheet alloc] initWithTitle:@"Standard IBActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitles:@"Other", @"Buttons", nil];
+
+    self.standardIBAS = [[IBActionSheet alloc] initWithTitle:@"Standard IBActionSheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Emphasis" otherButtonTitlesArray:@[@"Other", @"Buttons"]];
     [self.standardIBAS showInView:self.view];
 }
 

@@ -69,7 +69,6 @@
     
     self = [self init];
     self.delegate = delegate;
-    self.backgroundColor = [UIColor clearColor];
     
     NSMutableArray* titles = [otherTitlesArray mutableCopy];
     
@@ -200,6 +199,8 @@
         // setup spacing for retina devices
         if (self.hasCancelButton) {
             height = 59.5;
+        } else if (!self.hasCancelButton && self.titleView) {
+            height = 52.0;
         } else {
             height = 104.0;
         }
@@ -345,17 +346,34 @@
 #pragma mark IBActionSheet Helpful methods
 
 - (NSInteger)addButtonWithTitle:(NSString *)title {
-
-    int index = self.buttons.count - 1;
     
-    IBActionSheetButton *button = [[IBActionSheetButton alloc] initWithBottomCornersRounded];
+    int index;
+    
+    if (self.buttons.count > 1)
+        index = self.buttons.count - 1;
+    else if (self.buttons.count == 1 && !self.hasCancelButton)
+        index = 1;
+    else
+        index = 0;
+    
+    IBActionSheetButton *button;
+    
+    if ((self.buttons.count == 1 && self.hasCancelButton && !self.titleView) || (self.buttons.count == 0 && !self.titleView))
+        button = [[IBActionSheetButton alloc] initWithAllCornersRounded];
+    else
+        button = [[IBActionSheetButton alloc] initWithBottomCornersRounded];
+    
     [button setTitle:title forState:UIControlStateAll];
+    
     button.index = index;
     
     if (self.hasCancelButton) {
         
+        // update the cancel button with its new index
         [self.buttons insertObject:button atIndex:index];
-        [[self.buttons lastObject] setIndex:self.buttons.count - 1];
+        IBActionSheetButton *cancelButton = [self.buttons lastObject];
+        cancelButton.index += 1;
+        [self.buttons replaceObjectAtIndex:(index + 1) withObject:cancelButton];
         
         IBActionSheetButton *tempButton;
         IBActionSheetButton *theButtonToCopy;
@@ -366,7 +384,7 @@
             } else {
                 tempButton = [[IBActionSheetButton alloc] initWithTopCornersRounded];
             }
-        
+            
             theButtonToCopy = [self.buttons objectAtIndex:0];
             tempButton.index = theButtonToCopy.index;
             [tempButton setTitle:theButtonToCopy.titleLabel.text forState:UIControlStateAll];
@@ -374,20 +392,66 @@
             [self.buttons replaceObjectAtIndex:0 withObject:tempButton];
             [self setButtonTextColor:theButtonToCopy.titleLabel.textColor forButtonAtIndex:0];
             [self setButtonBackgroundColor:theButtonToCopy.backgroundColor forButtonAtIndex:0];
-
-        } else {
-           
+            
+        } else if (self.buttons.count > 2) {
+            
             tempButton = [[IBActionSheetButton alloc] init];
             theButtonToCopy = [self.buttons objectAtIndex:(index - 1)];
             [tempButton setTitle:theButtonToCopy.titleLabel.text forState:UIControlStateAll];
             tempButton.titleLabel.text = theButtonToCopy.titleLabel.text;
+            tempButton.index = theButtonToCopy.index;
             
             [self.buttons replaceObjectAtIndex:(index - 1) withObject:tempButton];
             [self setButtonTextColor:theButtonToCopy.titleLabel.textColor forButtonAtIndex:(index - 1)];
             [self setButtonBackgroundColor:theButtonToCopy.backgroundColor forButtonAtIndex:(index - 1)];
         }
     } else {
+        
+        button.index = self.buttons.count;
         [self.buttons addObject:button];
+        
+        
+        if (self.buttons.count == 3) {
+            
+            IBActionSheetButton *theButtonToCopy = [self.buttons objectAtIndex:0];
+            IBActionSheetButton *tempButton;
+            
+            if (self.titleView)
+                tempButton = [[IBActionSheetButton alloc] init];
+            else
+                tempButton = [[IBActionSheetButton alloc] initWithTopCornersRounded];
+            
+            [tempButton setTitle:theButtonToCopy.titleLabel.text forState:UIControlStateAll];
+            tempButton.titleLabel.text = theButtonToCopy.titleLabel.text;
+            tempButton.index = theButtonToCopy.index;
+            
+            [self.buttons replaceObjectAtIndex:tempButton.index withObject:tempButton];
+        }
+        
+        if (self.buttons.count >= 2) {
+            
+            IBActionSheetButton *theButtonToCopy;
+            
+            if (self.buttons.count == 2 && !self.hasCancelButton)
+                theButtonToCopy = [self.buttons objectAtIndex:index - 1];
+            else
+                theButtonToCopy = [self.buttons objectAtIndex:index];
+            IBActionSheetButton *tempButton;
+            
+            if (self.titleView || self.buttons.count > 2)
+                tempButton = [[IBActionSheetButton alloc] init];
+            else
+                tempButton = [[IBActionSheetButton alloc] initWithTopCornersRounded];
+            
+            [tempButton setTitle:theButtonToCopy.titleLabel.text forState:UIControlStateAll];
+            tempButton.titleLabel.text = theButtonToCopy.titleLabel.text;
+            tempButton.index = theButtonToCopy.index;
+            
+            [self.buttons replaceObjectAtIndex:tempButton.index withObject:tempButton];
+            
+        }
+        
+        
     }
     
     [self setUpTheActions];
