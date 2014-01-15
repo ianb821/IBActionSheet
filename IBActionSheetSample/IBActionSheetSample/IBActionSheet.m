@@ -347,14 +347,11 @@
 
 - (NSInteger)addButtonWithTitle:(NSString *)title {
     
-    int index;
+    int index = self.buttons.count;
     
-    if (self.buttons.count > 1)
-        index = self.buttons.count - 1;
-    else if (self.buttons.count == 1 && !self.hasCancelButton)
-        index = 1;
-    else
-        index = 0;
+    if (self.hasCancelButton) {
+        index -= 1;
+    }
     
     IBActionSheetButton *button;
     
@@ -653,7 +650,7 @@
 #pragma mark IBActionSheet Other Properties methods
 
 - (void)setTitle:(NSString *)title {
-    self.titleView = [[IBActionSheetTitleView alloc] initWithTitle:title];
+    self.titleView = [[IBActionSheetTitleView alloc] initWithTitle:title font:nil];
     [self setUpTheActionSheet];
 }
 
@@ -683,7 +680,12 @@
 
 - (void)setTitleFont:(UIFont *)font {
     if (self.titleView) {
-        self.titleView.titleLabel.font = font;
+        UIColor *backgroundColor = self.titleView.backgroundColor;
+        UIColor *textColor = self.titleView.titleLabel.textColor;
+        self.titleView = [[IBActionSheetTitleView alloc] initWithTitle:self.titleView.titleLabel.text font:font];
+        self.titleView.backgroundColor = backgroundColor;
+        self.titleView.titleLabel.textColor = textColor;
+        [self setUpTheActionSheet];
     }
 }
 
@@ -817,7 +819,7 @@
 
 @implementation IBActionSheetTitleView
 
-- (id)initWithTitle:(NSString *)title {
+- (id)initWithTitle:(NSString *)title font:(UIFont *)font {
     
     self = [self init];
     
@@ -835,12 +837,18 @@
     self.alpha = .95f;
     self.backgroundColor = [UIColor whiteColor];
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width - labelBuffer, 44)];
-    self.titleLabel.font = [UIFont systemFontOfSize:13];
     self.titleLabel.textColor = [UIColor colorWithWhite:0.564 alpha:1.000];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.text = title;
     self.titleLabel.backgroundColor = [UIColor clearColor];
+    
+    if (font) {
+        self.titleLabel.font = font;
+    } else {
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
+    }
+    
     [self.titleLabel sizeToFit];
     
    
