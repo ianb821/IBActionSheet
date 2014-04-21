@@ -501,39 +501,78 @@
     self.center = CGPointMake(x, height + CGRectGetHeight(self.frame) / 2.0);
     self.transparentView.center = CGPointMake(x, height / 2.0);
     
-    [UIView animateWithDuration:0.2f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^() {
-                         self.transparentView.alpha = 0.4f;
-                         if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        
+        
+        [UIView animateWithDuration:0.2f
+                              delay:0.0f
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^() {
+                             self.transparentView.alpha = 0.4f;
                              self.center = CGPointMake(x, (height - 20) - CGRectGetHeight(self.frame) / 2.0);
-                         } else {
+                             
+                         } completion:^(BOOL finished) {
+                             self.visible = YES;
+                         }];
+    } else {
+        
+        [UIView animateWithDuration:0.5f
+                              delay:0
+             usingSpringWithDamping:0.6f
+              initialSpringVelocity:0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.transparentView.alpha = 0.4f;
                              self.center = CGPointMake(x, height - CGRectGetHeight(self.frame) / 2.0);
-                         }
-                         
-                     } completion:^(BOOL finished) {
-                         self.visible = YES;
-                     }];
+                             
+                         } completion:^(BOOL finished) {
+                             self.visible = YES;
+                         }];
+    }
 }
 
 - (void)removeFromView {
     
     if (self.shouldCancelOnTouch) {
         
-        [UIView animateWithDuration:0.3f
-                              delay:0.0f
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^() {
-                             self.transparentView.alpha = 0.0f;
-                             self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
-                         } completion:^(BOOL finished) {
-                             [self.transparentView removeFromSuperview];
-                             [self removeFromSuperview];
-                             self.visible = NO;
-                         }];
+        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+            
+            
+            [UIView animateWithDuration:0.2f
+                                  delay:0.0f
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^() {
+                                 self.transparentView.alpha = 0.0f;
+                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 
+                             } completion:^(BOOL finished) {
+                                 [self.transparentView removeFromSuperview];
+                                 [self removeFromSuperview];
+                                 self.visible = NO;
+                             }];
+        } else {
+            
+            [UIView animateWithDuration:0.5f
+                                  delay:0
+                 usingSpringWithDamping:0.6f
+                  initialSpringVelocity:0
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 self.transparentView.alpha = 0.0f;
+                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 
+                             } completion:^(BOOL finished) {
+                                 [self.transparentView removeFromSuperview];
+                                 [self removeFromSuperview];
+                                 self.visible = NO;
+                             }];
+        }
+        
     }
+    
 }
+
 
 - (void)rotateToCurrentOrientation {
     
