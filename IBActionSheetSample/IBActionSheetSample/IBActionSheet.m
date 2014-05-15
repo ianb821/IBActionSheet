@@ -519,7 +519,7 @@
         
         [UIView animateWithDuration:0.5f
                               delay:0
-             usingSpringWithDamping:0.6f
+             usingSpringWithDamping:500
               initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
@@ -555,7 +555,7 @@
             
             [UIView animateWithDuration:0.5f
                                   delay:0
-                 usingSpringWithDamping:0.6f
+                 usingSpringWithDamping:500
                   initialSpringVelocity:0
                                 options:UIViewAnimationOptionCurveLinear
                              animations:^{
