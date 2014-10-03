@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 
 #pragma mark - IBActionSheetDelegate Protocol
 
+typedef void (^IBActionCallback)(IBActionSheet *actionSheet, NSInteger buttonIndex);
+
 // Protocol needed to receive notifications from the IBActionSheet (Will receive UIActionSheet notifications as well)
 @protocol IBActionSheetDelegate <NSObject>
 
@@ -68,7 +70,11 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
 - (id)initWithTitle:(NSString *)title delegate:(id<IBActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
+- (id)initWithTitle:(NSString *)title callback:(IBActionCallback)callback cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitles:(NSString *)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
+
 - (id)initWithTitle:(NSString *)title delegate:(id<IBActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitlesArray:(NSArray *)otherTitlesArray;
+- (id)initWithTitle:(NSString *)title callback:(IBActionCallback)callback cancelButtonTitle:(NSString *)cancelTitle destructiveButtonTitle:(NSString *)destructiveTitle otherButtonTitlesArray:(NSArray *)otherTitlesArray;
+
 
 
 - (NSInteger)numberOfButtons;
@@ -106,6 +112,7 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 @property (weak) id <IBActionSheetDelegate> delegate;
 @property IBActionSheetButtonResponse buttonResponse;
 @property BOOL visible, hasCancelButton, hasDestructiveButton, shouldCancelOnTouch;
+@property (nonatomic, copy) IBActionCallback callback;
 
 @end
 
