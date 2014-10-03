@@ -147,7 +147,7 @@
             [topButton setTitle:[titles objectAtIndex:0] forState:UIControlStateAll];
             [self.buttons insertObject:topButton atIndex:0];
             
-            int whereToStop = titles.count - 1;
+            int whereToStop = (int)titles.count - 1;
             for (int i = 1; i < whereToStop; ++i) {
                 IBActionSheetButton *middleButton = [[IBActionSheetButton alloc] init];
                 [middleButton setTitle:[titles objectAtIndex:i] forState:UIControlStateAll];
@@ -223,11 +223,11 @@
             [[self.buttons lastObject] setCenter:pointOfReference];
             [[self.buttons objectAtIndex:0] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
             pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
-            whereToStop = self.buttons.count - 2;
+            whereToStop = (int)self.buttons.count - 2;
         } else {
             [self addSubview:[self.buttons lastObject]];
             [[self.buttons lastObject] setCenter:pointOfReference];
-            whereToStop = self.buttons.count - 1;
+            whereToStop = (int)self.buttons.count - 1;
         }
         
         for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
@@ -268,11 +268,11 @@
             [[self.buttons lastObject] setCenter:pointOfReference];
             [[self.buttons objectAtIndex:0] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
             pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
-            whereToStop = self.buttons.count - 2;
+            whereToStop = (int)self.buttons.count - 2;
         } else {
             [self addSubview:[self.buttons lastObject]];
             [[self.buttons lastObject] setCenter:pointOfReference];
-            whereToStop = self.buttons.count - 1;
+            whereToStop = (int)self.buttons.count - 1;
         }
         
         for (int i = 0, j = whereToStop; i <= whereToStop; ++i, --j) {
@@ -313,7 +313,7 @@
                              [button setTitleColor:button.highlightTextColor forState:UIControlStateAll];
                              
                          } else {
-                         
+                             
                              UIColor *tempColor = button.titleLabel.textColor;
                              [button setTitleColor:button.backgroundColor forState:UIControlStateAll];
                              button.backgroundColor = tempColor;
@@ -347,7 +347,7 @@
 
 - (NSInteger)addButtonWithTitle:(NSString *)title {
     
-    int index = self.buttons.count;
+    int index = (int)self.buttons.count;
     
     if (self.hasCancelButton) {
         index -= 1;
@@ -585,12 +585,12 @@
         height = CGRectGetHeight([UIScreen mainScreen].bounds);
         
         
-            for (IBActionSheetButton * button in self.buttons) {
-                [button resizeForPortraitOrientation];
-            }
+        for (IBActionSheetButton * button in self.buttons) {
+            [button resizeForPortraitOrientation];
+        }
         
-            [self.titleView resizeForPortraitOrientation];
-            [self setUpTheActionSheet];
+        [self.titleView resizeForPortraitOrientation];
+        [self setUpTheActionSheet];
         
         
         
@@ -599,7 +599,7 @@
         
         width = CGRectGetHeight([UIScreen mainScreen].bounds);
         height = CGRectGetWidth([UIScreen mainScreen].bounds);
-
+        
         
         for (IBActionSheetButton * button in self.buttons) {
             [button resizeForLandscapeOrientation];
@@ -621,7 +621,7 @@
 - (void)setButtonTextColor:(UIColor *)color {
     
     for (IBActionSheetButton *button in self.buttons) {
-            [button setTitleColor:color forState:UIControlStateAll];
+        [button setTitleColor:color forState:UIControlStateAll];
         button.originalTextColor = color;
     }
     
@@ -634,7 +634,7 @@
         button.backgroundColor = color;
         button.originalBackgroundColor = color;
     }
-
+    
     [self setTitleBackgroundColor:color];
 }
 
@@ -838,7 +838,7 @@
         default:
             break;
     }
-
+    
 }
 
 - (void)setMaskTo:(UIView*)view byRoundingCorners:(UIRectCorner)corners
@@ -890,7 +890,7 @@
     
     [self.titleLabel sizeToFit];
     
-   
+    
     
     if ((CGRectGetHeight(self.titleLabel.frame) + 30) < 44) {
         self.frame = CGRectMake(0, 0, width - 16, 44);
