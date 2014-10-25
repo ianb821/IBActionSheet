@@ -23,6 +23,9 @@
 
 #import "IBActionSheet.h"
 
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+
 #pragma mark - IBActionSheet
 
 @implementation IBActionSheet
@@ -716,17 +719,12 @@
     
 }
 
-
 - (void)rotateToCurrentOrientation {
     
-    float width;
-    float height;
+    float width = SCREEN_WIDTH;
+    float height = SCREEN_HEIGHT;
     
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        
-        width = CGRectGetWidth([UIScreen mainScreen].bounds);
-        height = CGRectGetHeight([UIScreen mainScreen].bounds);
-        
         
         for (IBActionSheetButton * button in self.buttons) {
             [button resizeForPortraitOrientation];
@@ -735,14 +733,7 @@
         [self.titleView resizeForPortraitOrientation];
         [self setUpTheActionSheet];
         
-        
-        
-        
     } else {
-        
-        width = CGRectGetHeight([UIScreen mainScreen].bounds);
-        height = CGRectGetWidth([UIScreen mainScreen].bounds);
-        
         
         for (IBActionSheetButton * button in self.buttons) {
             [button resizeForLandscapeOrientation];
@@ -759,6 +750,7 @@
     
 }
 
+ 
 #pragma mark IBActionSheet Color methods
 
 - (void)setButtonTextColor:(UIColor *)color {
