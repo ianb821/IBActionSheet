@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '5.0'
   s.source       = { :git => "https://github.com/ianb821/IBActionSheet.git", :tag => s.version.to_s }
   s.source_files = 'IBActionSheetSample/IBActionSheetSample/IBActionSheet.{h,m}'
-  s.resource_bundle = { 'ResourceBundle' => [ 'DSXActivityIndicator/Resources/*.png'] }
   
   s.framework  = 'QuartzCore'
   s.requires_arc = true
