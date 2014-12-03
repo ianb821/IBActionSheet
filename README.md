@@ -1,11 +1,11 @@
 #IBActionSheet
 
-Fully customizable iOS 7 style UIActionSheet replacement.  Compatible with iOS 5, 6, and 7.
+Fully customizable iOS 7/8 style UIActionSheet replacement.  Compatible with iOS 5, 6, 7, and 8.
 
 
 ##Features
 
-By default, IBActionSheet mimics the iOS 7 UIActionSheet exactly:
+By default, IBActionSheet mimics the iOS 7/8 UIActionSheet exactly:
 
  
 
