@@ -283,7 +283,7 @@
             [topButton setTitle:[titles objectAtIndex:0] forState:UIControlStateAll];
             [self.buttons insertObject:topButton atIndex:0];
             
-            int whereToStop = titles.count - 1;
+            int whereToStop = (int)titles.count - 1;
             for (int i = 1; i < whereToStop; ++i) {
                 IBActionSheetButton *middleButton = [[IBActionSheetButton alloc] init];
                 [middleButton setTitle:[titles objectAtIndex:i] forState:UIControlStateAll];

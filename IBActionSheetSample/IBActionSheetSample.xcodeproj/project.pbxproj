@@ -216,7 +216,7 @@
 			name = IBActionSheetSampleTests;
 			productName = IBActionSheetSampleTests;
 			productReference = 048601AB17CE896E000AE7F1 /* IBActionSheetSampleTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -224,7 +224,7 @@
 		0486017D17CE896E000AE7F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Ian Burns";
 			};
