@@ -20,6 +20,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
 #define UIControlStateAll UIControlStateNormal & UIControlStateSelected & UIControlStateHighlighted
 #define SYSTEM_VERSION_LESS_THAN(version) ([[[UIDevice currentDevice] systemVersion] compare:version options:NSNumericSearch] == NSOrderedAscending)
 
@@ -40,10 +43,6 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
     IBActionSheetButtonCornerTypeAllCornersRounded
     
 };
-
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-
 
 // forward declarations
 @class IBActionSheet, IBActionSheetTitleView;
