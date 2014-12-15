@@ -67,6 +67,7 @@
     }
     
     self.customIBAS = [[IBActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Some" otherButtonTitles:@"Other", @"Buttons", nil];
+    self.customIBAS.blurBackground = YES;
     
     [self.customIBAS setButtonBackgroundColor:self.backgroundColor];
     [self.customIBAS setButtonTextColor:self.textColor];

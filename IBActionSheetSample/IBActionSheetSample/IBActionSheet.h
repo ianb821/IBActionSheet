@@ -110,7 +110,7 @@ typedef void (^IBActionCallback)(IBActionSheet *actionSheet, NSInteger buttonInd
 @property IBActionSheetTitleView *titleView;
 @property (weak) id <IBActionSheetDelegate> delegate;
 @property IBActionSheetButtonResponse buttonResponse;
-@property BOOL visible, hasCancelButton, hasDestructiveButton, shouldCancelOnTouch;
+@property BOOL visible, hasCancelButton, hasDestructiveButton, shouldCancelOnTouch, blurBackground; // Background Blur is only currently availble on iOS 8.
 @property (nonatomic, copy) IBActionCallback callback;
 
 @end

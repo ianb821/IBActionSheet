@@ -608,6 +608,10 @@
     
     if (!animated) {
         [self.transparentView removeFromSuperview];
+        UIView *blurView = [self.superview viewWithTag:821];
+        if (blurView) {
+            [blurView removeFromSuperview];
+        }
         [self removeFromSuperview];
         self.visible = NO;
         if(self.delegate) [self.delegate actionSheet:self clickedButtonAtIndex:buttonIndex];
@@ -621,7 +625,21 @@
 
 - (void)showInView:(UIView *)theView {
     
+
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    if (NSClassFromString(@"UIVisualEffectView") && self.blurBackground) {
+        UIVisualEffectView *visualEffectView;
+        visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        visualEffectView.frame = theView.bounds;
+        visualEffectView.tag = 821;
+        [theView addSubview:visualEffectView];
+        visualEffectView.userInteractionEnabled = NO;
+    }
+
     [theView addSubview:self];
+    
     [theView insertSubview:self.transparentView belowSubview:self];
     
     CGRect theScreenRect = [UIScreen mainScreen].bounds;
@@ -699,18 +717,28 @@
                              }];
         } else {
             
+            UIView *blurView = [self.transparentView.superview viewWithTag:821];
+            
             [UIView animateWithDuration:0.3f
                                   delay:0
                  usingSpringWithDamping:0.85f
                   initialSpringVelocity:1.0f
                                 options:UIViewAnimationOptionCurveLinear
                              animations:^{
+                                 
+                                 if (blurView) {
+                                     blurView.alpha = 0;
+                                 }
+                                 
                                  self.transparentView.alpha = 0.0f;
                                  self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
                                  [self removeFromSuperview];
+                                 if (blurView) {
+                                     [blurView removeFromSuperview];
+                                 }
                                  self.visible = NO;
                              }];
         }
