@@ -85,7 +85,8 @@ typedef void (^IBActionCallback)(IBActionSheet *actionSheet, NSInteger buttonInd
 - (void)setFont:(UIFont *)font;
 - (void)setTitleFont:(UIFont *)font;
 - (void)setFont:(UIFont *)font forButtonAtIndex:(NSInteger)index;
-
+- (void)setCancelButtonFont:(UIFont *)font;
+- (void)setDestructiveButtonFont:(UIFont *)font;
 
 // standard colors
 - (void)setTitleTextColor:(UIColor *)color;
@@ -111,6 +112,7 @@ typedef void (^IBActionCallback)(IBActionSheet *actionSheet, NSInteger buttonInd
 @property (weak) id <IBActionSheetDelegate> delegate;
 @property IBActionSheetButtonResponse buttonResponse;
 @property BOOL visible, hasCancelButton, hasDestructiveButton, shouldCancelOnTouch, blurBackground; // Background Blur is only currently availble on iOS 8.
+@property int cancelButtonIndex, destructiveButtonIndex;
 @property (nonatomic, copy) IBActionCallback callback;
 
 @end

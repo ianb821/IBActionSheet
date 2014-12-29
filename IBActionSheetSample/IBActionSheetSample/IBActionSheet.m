@@ -39,6 +39,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.buttons = [[NSMutableArray alloc] init];
     self.shouldCancelOnTouch = YES;
+    self.cancelButtonIndex = -1;
+    self.destructiveButtonIndex = -1;
     
     self.transparentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds))];
     self.transparentView.backgroundColor = [UIColor blackColor];
@@ -96,8 +98,10 @@
     if (destructiveTitle) {
         [titles insertObject:destructiveTitle atIndex:0];
         self.hasDestructiveButton = YES;
+        self.destructiveButtonIndex = 0;
     } else {
         self.hasDestructiveButton = NO;
+        self.destructiveButtonIndex = -1;
     }
     
     // set up cancel button
@@ -179,6 +183,12 @@
             
             break;
         }
+    }
+    
+    if (self.hasCancelButton) {
+        self.cancelButtonIndex = self.buttons.count - 1;
+    } else {
+        self.cancelButtonIndex = -1;
     }
     
     [self setUpTheActions];
@@ -211,8 +221,10 @@
     if (destructiveTitle) {
         [titles insertObject:destructiveTitle atIndex:0];
         self.hasDestructiveButton = YES;
+        self.destructiveButtonIndex = 0;
     } else {
         self.hasDestructiveButton = NO;
+        self.destructiveButtonIndex = -1;
     }
     
     // set up cancel button
@@ -294,6 +306,12 @@
             
             break;
         }
+    }
+    
+    if (self.hasCancelButton) {
+        self.cancelButtonIndex = self.buttons.count - 1;
+    } else {
+        self.cancelButtonIndex = -1;
     }
     
     [self setUpTheActions];
@@ -625,7 +643,7 @@
 
 - (void)showInView:(UIView *)theView {
     
-
+    
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
@@ -637,7 +655,7 @@
         [theView addSubview:visualEffectView];
         visualEffectView.userInteractionEnabled = NO;
     }
-
+    
     [theView addSubview:self];
     
     [theView insertSubview:self.transparentView belowSubview:self];
@@ -778,7 +796,7 @@
     
 }
 
- 
+
 #pragma mark IBActionSheet Color methods
 
 - (void)setButtonTextColor:(UIColor *)color {
@@ -888,6 +906,18 @@
         self.titleView.backgroundColor = backgroundColor;
         self.titleView.titleLabel.textColor = textColor;
         [self setUpTheActionSheet];
+    }
+}
+
+- (void)setCancelButtonFont:(UIFont *)font {
+    if (self.hasCancelButton) {
+        [self setFont:font forButtonAtIndex:self.cancelButtonIndex];
+    }
+}
+
+- (void)setDestructiveButtonFont:(UIFont *)font {
+    if (self.hasDestructiveButton) {
+        [self setFont:font forButtonAtIndex:self.destructiveButtonIndex];
     }
 }
 
