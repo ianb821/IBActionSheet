@@ -117,10 +117,10 @@
     [self.funkyIBAS setButtonBackgroundColor:[UIColor yellowColor] forButtonAtIndex:1];
     [self.funkyIBAS setFont:[UIFont fontWithName:@"Chalkduster" size:22] forButtonAtIndex:1];
     
-    
     [self.funkyIBAS setButtonTextColor:[UIColor greenColor] forButtonAtIndex:2];
     [self.funkyIBAS setButtonBackgroundColor:[UIColor brownColor] forButtonAtIndex:2];
-    [self.funkyIBAS setFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:22] forButtonAtIndex:3];
+    
+    [self.funkyIBAS setCancelButtonFont:[UIFont fontWithName:@"MarkerFelt-Wide" size:22]];
     
     [self.funkyIBAS showInView:self.view];
 }
@@ -129,7 +129,7 @@
 
 // the delegate method to receive notifications is exactly the same as the one for UIActionSheet
 - (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"Button at index: %ld clicked\nIt's title is '%@'", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
+    NSLog(@"Button at index: %ld clicked\nIts title is '%@'", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
 }
 
 
@@ -208,7 +208,7 @@
     self.funkyIBASButton.center = CGPointMake(halfOfWidth, (height / 2.0) + 75);
     
     
-    // position the custom IBAction creator view and it's components
+    // position the custom IBAction creator view and its components
     self.customIBActionSheetView.frame = CGRectMake(0, 0, CGRectGetHeight(self.view.frame) - 40, CGRectGetWidth(self.view.frame) - 40);
     if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
         height -= 20;
