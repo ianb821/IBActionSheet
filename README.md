@@ -58,6 +58,10 @@ IBActionSheet offers the same functionality as the UIActionSheet, including thin
 
 - (BOOL)visible;
 
+- (NSInteger)cancelButtonIndex;
+
+- (NSInteger)destructiveButtonIndex;
+
 ```
 
 To receive notifications from the IBActionSheet, just add 
@@ -84,6 +88,8 @@ Then you get to the good stuff, to customize the action sheet, you can choose fr
 - (void)setFont:(UIFont *)font;
 - (void)setTitleFont:(UIFont *)font;
 - (void)setFont:(UIFont *)font forButtonAtIndex:(NSInteger)index;
+- (void)setCancelButtonFont:(UIFont *)font;
+- (void)setDestructiveButtonFont:(UIFont *)font;
 
 
 // standard colors
