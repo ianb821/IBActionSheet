@@ -1,8 +1,10 @@
-#IBActionSheet
+IBActionSheet
+=========
+[![Pod Version](https://img.shields.io/cocoapods/v/IBActionSheet.svg?style=flat)](http://cocoadocs.org/docsets/IBActionSheet/) 
+[![Pod Platform](https://img.shields.io/cocoapods/p/IBActionSheet.svg?style=flat)](http://cocoadocs.org/docsets/SDWebImage/) 
+[![Pod License](https://img.shields.io/cocoapods/l/IBActionSheet.svg?style=flat)](http://cocoadocs.org/docsets/IBActionSheet)
 
 Fully customizable iOS 7/8 style UIActionSheet replacement.  Compatible with iOS 5, 6, 7, and 8.
-
-
 ##Features
 
 By default, IBActionSheet mimics the iOS 7/8 UIActionSheet exactly:
