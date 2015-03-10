@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0404CEE617CFCDE70007630B /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404CEE517CFCDE70007630B /* IBActionSheet.m */; };
-		0404CEF317CFCFF60007630B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404CEF217CFCFF60007630B /* ViewController.m */; };
 		0404CEF417CFCFFB0007630B /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404CEE517CFCDE70007630B /* IBActionSheet.m */; };
 		0404CEF517CFCFFF0007630B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404CEF217CFCFF60007630B /* ViewController.m */; };
 		0486018917CE896E000AE7F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0486018817CE896E000AE7F1 /* UIKit.framework */; };
@@ -21,23 +19,8 @@
 		0486019D17CE896E000AE7F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0486019C17CE896E000AE7F1 /* Default@2x.png */; };
 		0486019F17CE896E000AE7F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0486019E17CE896E000AE7F1 /* Default-568h@2x.png */; };
 		048601A217CE896E000AE7F1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048601A017CE896E000AE7F1 /* MainStoryboard.storyboard */; };
-		048601AD17CE896E000AE7F1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048601AC17CE896E000AE7F1 /* SenTestingKit.framework */; };
-		048601AE17CE896E000AE7F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0486018817CE896E000AE7F1 /* UIKit.framework */; };
-		048601AF17CE896E000AE7F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0486018A17CE896E000AE7F1 /* Foundation.framework */; };
-		048601B717CE896E000AE7F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 048601B517CE896E000AE7F1 /* InfoPlist.strings */; };
-		048601BA17CE896E000AE7F1 /* IBActionSheetSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 048601B917CE896E000AE7F1 /* IBActionSheetSampleTests.m */; };
 		048601C817CE9A72000AE7F1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048601C717CE9A72000AE7F1 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		048601B017CE896E000AE7F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0486017D17CE896E000AE7F1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0486018417CE896E000AE7F1;
-			remoteInfo = IBActionSheetSample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0404CEE417CFCDE70007630B /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
@@ -58,12 +41,7 @@
 		0486019C17CE896E000AE7F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0486019E17CE896E000AE7F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		048601A117CE896E000AE7F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		048601AB17CE896E000AE7F1 /* IBActionSheetSampleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IBActionSheetSampleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		048601AC17CE896E000AE7F1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		048601B417CE896E000AE7F1 /* IBActionSheetSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IBActionSheetSampleTests-Info.plist"; sourceTree = "<group>"; };
-		048601B617CE896E000AE7F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		048601B817CE896E000AE7F1 /* IBActionSheetSampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionSheetSampleTests.h; sourceTree = "<group>"; };
-		048601B917CE896E000AE7F1 /* IBActionSheetSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionSheetSampleTests.m; sourceTree = "<group>"; };
 		048601C717CE9A72000AE7F1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -76,16 +54,6 @@
 				0486018917CE896E000AE7F1 /* UIKit.framework in Frameworks */,
 				0486018B17CE896E000AE7F1 /* Foundation.framework in Frameworks */,
 				0486018D17CE896E000AE7F1 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		048601A717CE896E000AE7F1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				048601AD17CE896E000AE7F1 /* SenTestingKit.framework in Frameworks */,
-				048601AE17CE896E000AE7F1 /* UIKit.framework in Frameworks */,
-				048601AF17CE896E000AE7F1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				0486018E17CE896E000AE7F1 /* IBActionSheetSample */,
-				048601B217CE896E000AE7F1 /* IBActionSheetSampleTests */,
 				0486018717CE896E000AE7F1 /* Frameworks */,
 				0486018617CE896E000AE7F1 /* Products */,
 			);
@@ -115,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				0486018517CE896E000AE7F1 /* IBActionSheetSample.app */,
-				048601AB17CE896E000AE7F1 /* IBActionSheetSampleTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,25 +126,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		048601B217CE896E000AE7F1 /* IBActionSheetSampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				048601B817CE896E000AE7F1 /* IBActionSheetSampleTests.h */,
-				048601B917CE896E000AE7F1 /* IBActionSheetSampleTests.m */,
-				048601B317CE896E000AE7F1 /* Supporting Files */,
-			);
-			path = IBActionSheetSampleTests;
-			sourceTree = "<group>";
-		};
-		048601B317CE896E000AE7F1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				048601B417CE896E000AE7F1 /* IBActionSheetSampleTests-Info.plist */,
-				048601B517CE896E000AE7F1 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,25 +145,6 @@
 			productName = IBActionSheetSample;
 			productReference = 0486018517CE896E000AE7F1 /* IBActionSheetSample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		048601AA17CE896E000AE7F1 /* IBActionSheetSampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 048601C017CE896E000AE7F1 /* Build configuration list for PBXNativeTarget "IBActionSheetSampleTests" */;
-			buildPhases = (
-				048601A617CE896E000AE7F1 /* Sources */,
-				048601A717CE896E000AE7F1 /* Frameworks */,
-				048601A817CE896E000AE7F1 /* Resources */,
-				048601A917CE896E000AE7F1 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				048601B117CE896E000AE7F1 /* PBXTargetDependency */,
-			);
-			name = IBActionSheetSampleTests;
-			productName = IBActionSheetSampleTests;
-			productReference = 048601AB17CE896E000AE7F1 /* IBActionSheetSampleTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -241,7 +169,6 @@
 			projectRoot = "";
 			targets = (
 				0486018417CE896E000AE7F1 /* IBActionSheetSample */,
-				048601AA17CE896E000AE7F1 /* IBActionSheetSampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,31 +186,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		048601A817CE896E000AE7F1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				048601B717CE896E000AE7F1 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		048601A917CE896E000AE7F1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0486018117CE896E000AE7F1 /* Sources */ = {
@@ -297,25 +200,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		048601A617CE896E000AE7F1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				048601BA17CE896E000AE7F1 /* IBActionSheetSampleTests.m in Sources */,
-				0404CEE617CFCDE70007630B /* IBActionSheet.m in Sources */,
-				0404CEF317CFCFF60007630B /* ViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		048601B117CE896E000AE7F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0486018417CE896E000AE7F1 /* IBActionSheetSample */;
-			targetProxy = 048601B017CE896E000AE7F1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0486019117CE896E000AE7F1 /* InfoPlist.strings */ = {
@@ -332,14 +217,6 @@
 				048601A117CE896E000AE7F1 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		048601B517CE896E000AE7F1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				048601B617CE896E000AE7F1 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -427,40 +304,6 @@
 			};
 			name = Release;
 		};
-		048601C117CE896E000AE7F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IBActionSheetSample.app/IBActionSheetSample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "IBActionSheetSample/IBActionSheetSample-Prefix.pch";
-				INFOPLIST_FILE = "IBActionSheetSampleTests/IBActionSheetSampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		048601C217CE896E000AE7F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IBActionSheetSample.app/IBActionSheetSample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "IBActionSheetSample/IBActionSheetSample-Prefix.pch";
-				INFOPLIST_FILE = "IBActionSheetSampleTests/IBActionSheetSampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -478,15 +321,6 @@
 			buildConfigurations = (
 				048601BE17CE896E000AE7F1 /* Debug */,
 				048601BF17CE896E000AE7F1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		048601C017CE896E000AE7F1 /* Build configuration list for PBXNativeTarget "IBActionSheetSampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				048601C117CE896E000AE7F1 /* Debug */,
-				048601C217CE896E000AE7F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
