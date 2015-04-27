@@ -56,6 +56,10 @@ typedef void (^IBActionCallback)(IBActionSheet *actionSheet, NSInteger buttonInd
 
 -(void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
+@optional
+-(void)actionSheet:(IBActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
+-(void)actionSheet:(IBActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+
 @end
 
 #pragma mark - IBActionSheet

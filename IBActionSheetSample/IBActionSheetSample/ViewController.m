@@ -132,7 +132,14 @@
     NSLog(@"Button at index: %ld clicked\nIts title is '%@'", (long)buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
 }
 
+// optional delegate methods
+- (void)actionSheet:(IBActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"Will dismiss with button index %ld", (long)buttonIndex);
+}
 
+- (void)actionSheet:(IBActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"Dismissed with button index %ld", (long)buttonIndex);
+}
 
 #pragma mark - All the other junk for the sample project
 

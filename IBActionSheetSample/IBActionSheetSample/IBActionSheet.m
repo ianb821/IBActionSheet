@@ -29,6 +29,9 @@
 #pragma mark - IBActionSheet
 
 @implementation IBActionSheet
+{
+    NSInteger _selectedButtonIndex;
+}
 
 #pragma mark IBActionSheet Set up methods
 
@@ -616,7 +619,11 @@
 
 - (void)buttonClicked:(IBActionSheetButton *)button {
     
-    if(self.delegate) [self.delegate actionSheet:self clickedButtonAtIndex:button.index];
+    _selectedButtonIndex = button.index;
+    if(self.delegate) [self.delegate actionSheet:self clickedButtonAtIndex:_selectedButtonIndex];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
+        [self.delegate actionSheet:self willDismissWithButtonIndex:_selectedButtonIndex];
+    }
     if(self.callback) self.callback(self, button.index);
     self.shouldCancelOnTouch = YES;
     [self removeFromView];
@@ -624,6 +631,11 @@
 
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
     
+    _selectedButtonIndex = buttonIndex;
+    if(self.delegate) [self.delegate actionSheet:self clickedButtonAtIndex:_selectedButtonIndex];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
+        [self.delegate actionSheet:self willDismissWithButtonIndex:_selectedButtonIndex];
+    }
     if (!animated) {
         [self.transparentView removeFromSuperview];
         UIView *blurView = [self.superview viewWithTag:821];
@@ -632,17 +644,17 @@
         }
         [self removeFromSuperview];
         self.visible = NO;
-        if(self.delegate) [self.delegate actionSheet:self clickedButtonAtIndex:buttonIndex];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
+            [self.delegate actionSheet:self didDismissWithButtonIndex:_selectedButtonIndex];
+        }
         if(self.callback) self.callback(self, buttonIndex);
     } else {
         [self removeFromView];
-        if(self.delegate) [self.delegate actionSheet:self clickedButtonAtIndex:buttonIndex];
         if(self.callback) self.callback(self, buttonIndex);
     }
 }
 
 - (void)showInView:(UIView *)theView {
-    
     
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -732,6 +744,9 @@
                                  [self.transparentView removeFromSuperview];
                                  [self removeFromSuperview];
                                  self.visible = NO;
+                                 if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
+                                     [self.delegate actionSheet:self didDismissWithButtonIndex:_selectedButtonIndex];
+                                 }
                              }];
         } else {
             
@@ -758,6 +773,9 @@
                                      [blurView removeFromSuperview];
                                  }
                                  self.visible = NO;
+                                 if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
+                                     [self.delegate actionSheet:self didDismissWithButtonIndex:_selectedButtonIndex];
+                                 }
                              }];
         }
         
