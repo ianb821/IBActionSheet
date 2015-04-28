@@ -28,8 +28,8 @@
 
 #pragma mark - IBActionSheet
 
-@implementation IBActionSheet
-{
+@implementation IBActionSheet {
+    
     NSInteger _selectedButtonIndex;
 }
 
