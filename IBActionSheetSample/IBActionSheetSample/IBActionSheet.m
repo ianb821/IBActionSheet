@@ -23,15 +23,28 @@
 
 #import "IBActionSheet.h"
 
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-
 #pragma mark - IBActionSheet
+
+CGRect adjustedScreenBounds()
+{
+    // With iOS 8 it is no longer necessary to swap screen width/height when in landscape.
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    BOOL isLandscape = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0") && isLandscape) {
+        CGFloat temp = bounds.size.width;
+        bounds.size.width = bounds.size.height;
+        bounds.size.height = temp;
+    }
+    
+    return bounds;
+}
+
 
 @implementation IBActionSheet {
     
     NSInteger _selectedButtonIndex;
 }
+
 
 #pragma mark IBActionSheet Set up methods
 
@@ -45,7 +58,8 @@
     self.cancelButtonIndex = -1;
     self.destructiveButtonIndex = -1;
     
-    self.transparentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].bounds))];
+    CGRect bounds = adjustedScreenBounds();
+    self.transparentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds))];
     self.transparentView.backgroundColor = [UIColor blackColor];
     self.transparentView.alpha = 0.0f;
     
@@ -342,14 +356,7 @@
 - (void)setUpTheActionSheet {
     
     float height;
-    float width;
-    
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        width = CGRectGetWidth([UIScreen mainScreen].bounds);
-    } else {
-        width = CGRectGetHeight([UIScreen mainScreen].bounds);
-    }
-    
+    float width = CGRectGetWidth(adjustedScreenBounds());
     
     // slight adjustment to take into account non-retina devices
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]
@@ -672,20 +679,8 @@
     
     [theView insertSubview:self.transparentView belowSubview:self];
     
-    CGRect theScreenRect = [UIScreen mainScreen].bounds;
-    
-    float height;
-    float x;
-    
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        height = CGRectGetHeight(theScreenRect);
-        x = CGRectGetWidth(theView.frame) / 2.0;
-        self.transparentView.frame = CGRectMake(self.transparentView.center.x, self.transparentView.center.y, CGRectGetWidth(theScreenRect), CGRectGetHeight(theScreenRect));
-    } else {
-        height = CGRectGetWidth(theScreenRect);
-        x = CGRectGetHeight(theView.frame) / 2.0;
-        self.transparentView.frame = CGRectMake(self.transparentView.center.x, self.transparentView.center.y, CGRectGetHeight(theScreenRect), CGRectGetWidth(theScreenRect));
-    }
+    float height = CGRectGetHeight(adjustedScreenBounds());
+    float x = CGRectGetWidth(theView.frame) / 2.0;
     
     self.center = CGPointMake(x, height + CGRectGetHeight(self.frame) / 2.0);
     self.transparentView.center = CGPointMake(x, height / 2.0);
@@ -738,7 +733,7 @@
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^() {
                                  self.transparentView.alpha = 0.0f;
-                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(adjustedScreenBounds()) + CGRectGetHeight(self.frame) / 2.0);
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
@@ -764,7 +759,7 @@
                                  }
                                  
                                  self.transparentView.alpha = 0.0f;
-                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(adjustedScreenBounds()) + CGRectGetHeight(self.frame) / 2.0);
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
@@ -785,8 +780,8 @@
 
 - (void)rotateToCurrentOrientation {
     
-    float width = SCREEN_WIDTH;
-    float height = SCREEN_HEIGHT;
+    float width = adjustedScreenBounds().size.width;
+    float height = adjustedScreenBounds().size.height;
     
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         
@@ -950,13 +945,7 @@
 
 - (id)init {
     
-    float width;
-    
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        width = CGRectGetWidth([UIScreen mainScreen].bounds);
-    } else {
-        width = CGRectGetHeight([UIScreen mainScreen].bounds);
-    }
+    float width = adjustedScreenBounds().size.width;
     self = [self initWithFrame:CGRectMake(0, 0, width - 16, 44)];
     
     self.backgroundColor = [UIColor whiteColor];
@@ -1000,7 +989,7 @@
 
 - (void)resizeForPortraitOrientation {
     
-    self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
+    self.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 16, CGRectGetHeight(self.frame));
     
     switch (self.cornerType) {
         case IBActionSheetButtonCornerTypeNoCornersRounded:
@@ -1026,7 +1015,7 @@
 }
 
 - (void)resizeForLandscapeOrientation {
-    self.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
+    self.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 16, CGRectGetHeight(self.frame));
     
     switch (self.cornerType) {
         case IBActionSheetButtonCornerTypeNoCornersRounded:
@@ -1073,14 +1062,12 @@
     
     self = [self init];
     
-    float width;
+    float width = adjustedScreenBounds().size.width;
     float labelBuffer;
     
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        width = CGRectGetWidth([UIScreen mainScreen].bounds);
         labelBuffer = 44;
     } else {
-        width = CGRectGetHeight([UIScreen mainScreen].bounds);
         labelBuffer = 24;
     }
     
@@ -1118,15 +1105,15 @@
 
 - (void)resizeForPortraitOrientation {
     
-    self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 24, 44);
+    self.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 16, CGRectGetHeight(self.frame));
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 24, 44);
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
 - (void)resizeForLandscapeOrientation {
     
-    self.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 44, 44);
+    self.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 16, CGRectGetHeight(self.frame));
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 44, 44);
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
