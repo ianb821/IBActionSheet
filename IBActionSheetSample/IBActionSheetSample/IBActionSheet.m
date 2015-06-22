@@ -993,6 +993,7 @@ CGRect adjustedScreenBounds()
     
     switch (self.cornerType) {
         case IBActionSheetButtonCornerTypeNoCornersRounded:
+            [self setMaskTo:self byRoundingCorners:0];
             break;
             
         case IBActionSheetButtonCornerTypeTopCornersRounded: {
@@ -1019,6 +1020,7 @@ CGRect adjustedScreenBounds()
     
     switch (self.cornerType) {
         case IBActionSheetButtonCornerTypeNoCornersRounded:
+            [self setMaskTo:self byRoundingCorners:0];
             break;
             
         case IBActionSheetButtonCornerTypeTopCornersRounded: {
