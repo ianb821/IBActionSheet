@@ -1108,14 +1108,14 @@ CGRect adjustedScreenBounds()
 - (void)resizeForPortraitOrientation {
     
     self.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 16, CGRectGetHeight(self.frame));
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 24, 44);
+    self.titleLabel.frame = self.bounds;
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
 - (void)resizeForLandscapeOrientation {
     
     self.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 16, CGRectGetHeight(self.frame));
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(adjustedScreenBounds()) - 44, 44);
+    self.titleLabel.frame = self.bounds;
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
