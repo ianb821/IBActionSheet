@@ -672,17 +672,18 @@
     CGFloat selfHeight = CGRectGetHeight(self.frame);
     [theView addSubview:self];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-
+    
     NSDictionary *view = NSDictionaryOfVariableBindings(self);
-
+    
     // Pin the sides to the parent view
     [theView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[self]|" options:0 metrics:nil views:view]];
-
+    
     // Hold onto reference so can move the constraint later
     // Initially hide the ActionSheet by setting the bottom constraint set to height of the ActionSheet
-    _bottomConstraint = [NSLayoutConstraint constraintWithItem:theView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:selfHeight];
+    _bottomConstraint = [NSLayoutConstraint constraintWithItem:theView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:-selfHeight];
     [theView addConstraint:_bottomConstraint];
-
+    [self layoutIfNeeded];
+    
     // Reset the height of the ActionSheet with AutoLayout
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:selfHeight]];
     
@@ -716,8 +717,8 @@
                              self.transparentView.alpha = 0.4f;
                              
                              // Move the ActionSheet back into view
-                            _bottomConstraint.constant = 0.f;
-                            [self layoutIfNeeded];
+                             _bottomConstraint.constant = 0.f;
+                             [self layoutIfNeeded];
                              
                          } completion:^(BOOL finished) {
                              self.visible = YES;
@@ -733,8 +734,8 @@
                              self.transparentView.alpha = 0.4f;
                              
                              // Move the ActionSheet back into view
-                            _bottomConstraint.constant = 0.f;
-                            [self layoutIfNeeded];
+                             _bottomConstraint.constant = 0.f;
+                             [self layoutIfNeeded];
                              
                          } completion:^(BOOL finished) {
                              self.visible = YES;
@@ -761,8 +762,8 @@
                                  self.transparentView.alpha = 0.0f;
                                  
                                  // Move the ActionSheet back out of view
-                                _bottomConstraint.constant = CGRectGetHeight(self.bounds);
-                                [self layoutIfNeeded];
+                                 _bottomConstraint.constant = -CGRectGetHeight(self.bounds);
+                                 [self layoutIfNeeded];
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
@@ -790,9 +791,9 @@
                                  self.transparentView.alpha = 0.0f;
                                  
                                  // Move the ActionSheet back out of view
-                                _bottomConstraint.constant = CGRectGetHeight(self.bounds);
-                                [self layoutIfNeeded];
-                                
+                                 _bottomConstraint.constant = -CGRectGetHeight(self.bounds);
+                                 [self layoutIfNeeded];
+                                 
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
                                  [self removeFromSuperview];
@@ -1025,7 +1026,6 @@
 }
 
 - (void)resizeForPortraitOrientation {
-    
     self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
     
     switch (self.cornerType) {
