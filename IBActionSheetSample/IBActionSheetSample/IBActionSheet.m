@@ -1026,7 +1026,6 @@
 }
 
 - (void)resizeForPortraitOrientation {
-    self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
     
     switch (self.cornerType) {
         case IBActionSheetButtonCornerTypeNoCornersRounded:
@@ -1052,7 +1051,6 @@
 }
 
 - (void)resizeForLandscapeOrientation {
-    self.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
     
     switch (self.cornerType) {
         case IBActionSheetButtonCornerTypeNoCornersRounded:
@@ -1144,15 +1142,11 @@
 
 - (void)resizeForPortraitOrientation {
     
-    self.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 24, 44);
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
 - (void)resizeForLandscapeOrientation {
     
-    self.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 16, CGRectGetHeight(self.frame));
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetHeight([UIScreen mainScreen].bounds) - 44, 44);
     [self setMaskTo:self byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight];
 }
 
