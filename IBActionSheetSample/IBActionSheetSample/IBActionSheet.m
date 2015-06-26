@@ -31,6 +31,7 @@
 @implementation IBActionSheet {
     
     NSInteger _selectedButtonIndex;
+    NSLayoutConstraint *_bottomConstraint;
 }
 
 #pragma mark IBActionSheet Set up methods
@@ -668,7 +669,22 @@
         visualEffectView.userInteractionEnabled = NO;
     }
     
+    CGFloat selfHeight = CGRectGetHeight(self.frame);
     [theView addSubview:self];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    NSDictionary *view = NSDictionaryOfVariableBindings(self);
+
+    // Pin the sides to the parent view
+    [theView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[self]|" options:0 metrics:nil views:view]];
+
+    // Hold onto reference so can move the constraint later
+    // Initially hide the ActionSheet by setting the bottom constraint set to height of the ActionSheet
+    _bottomConstraint = [NSLayoutConstraint constraintWithItem:theView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:selfHeight];
+    [theView addConstraint:_bottomConstraint];
+
+    // Reset the height of the ActionSheet with AutoLayout
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:selfHeight]];
     
     [theView insertSubview:self.transparentView belowSubview:self];
     
@@ -687,7 +703,6 @@
         self.transparentView.frame = CGRectMake(self.transparentView.center.x, self.transparentView.center.y, CGRectGetHeight(theScreenRect), CGRectGetWidth(theScreenRect));
     }
     
-    self.center = CGPointMake(x, height + CGRectGetHeight(self.frame) / 2.0);
     self.transparentView.center = CGPointMake(x, height / 2.0);
     
     
@@ -699,7 +714,10 @@
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^() {
                              self.transparentView.alpha = 0.4f;
-                             self.center = CGPointMake(x, (height - 20) - CGRectGetHeight(self.frame) / 2.0);
+                             
+                             // Move the ActionSheet back into view
+                            _bottomConstraint.constant = 0.f;
+                            [self layoutIfNeeded];
                              
                          } completion:^(BOOL finished) {
                              self.visible = YES;
@@ -713,7 +731,10 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              self.transparentView.alpha = 0.4f;
-                             self.center = CGPointMake(x, height - CGRectGetHeight(self.frame) / 2.0);
+                             
+                             // Move the ActionSheet back into view
+                            _bottomConstraint.constant = 0.f;
+                            [self layoutIfNeeded];
                              
                          } completion:^(BOOL finished) {
                              self.visible = YES;
@@ -738,7 +759,10 @@
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^() {
                                  self.transparentView.alpha = 0.0f;
-                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
+                                 
+                                 // Move the ActionSheet back out of view
+                                _bottomConstraint.constant = CGRectGetHeight(self.bounds);
+                                [self layoutIfNeeded];
                                  
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
@@ -764,8 +788,11 @@
                                  }
                                  
                                  self.transparentView.alpha = 0.0f;
-                                 self.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight([UIScreen mainScreen].bounds) + CGRectGetHeight(self.frame) / 2.0);
                                  
+                                 // Move the ActionSheet back out of view
+                                _bottomConstraint.constant = CGRectGetHeight(self.bounds);
+                                [self layoutIfNeeded];
+                                
                              } completion:^(BOOL finished) {
                                  [self.transparentView removeFromSuperview];
                                  [self removeFromSuperview];
@@ -810,7 +837,6 @@
     
     self.transparentView.frame = CGRectMake(0, 0, width, height);
     self.transparentView.center = CGPointMake(width / 2.0, height / 2.0);
-    self.center = self.center = CGPointMake(width / 2.0, height - CGRectGetHeight(self.frame) / 2.0);
     
 }
 
