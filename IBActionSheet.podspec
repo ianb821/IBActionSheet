@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'IBActionSheet'
-  s.version      = '0.0.2'
+  s.version      = '0.0.3'
   s.summary      = 'Customizable iOS 7 style UIActionSheet'
 
   s.homepage     = 'https://github.com/ianb821/IBActionSheet'
