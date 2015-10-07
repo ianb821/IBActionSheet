@@ -360,7 +360,7 @@ CGRect adjustedScreenBounds()
     
     // slight adjustment to take into account non-retina devices
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]
-        && [[UIScreen mainScreen] scale] == 2.0) {
+        && [[UIScreen mainScreen] scale] >= 2.0) {
         
         // setup spacing for retina devices
         if (self.hasCancelButton) {
@@ -386,8 +386,8 @@ CGRect adjustedScreenBounds()
         int whereToStop;
         if (self.hasCancelButton) {
             [self addSubview:[self.buttons lastObject]];
-            [[self.buttons lastObject] setCenter:pointOfReference];
             [[self.buttons objectAtIndex:0] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
+            [[self.buttons lastObject] setCenter:pointOfReference];
             pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
             whereToStop = (int)self.buttons.count - 2;
         } else {
@@ -431,8 +431,8 @@ CGRect adjustedScreenBounds()
         int whereToStop;
         if (self.hasCancelButton) {
             [self addSubview:[self.buttons lastObject]];
-            [[self.buttons lastObject] setCenter:pointOfReference];
             [[self.buttons objectAtIndex:0] setCenter:CGPointMake(pointOfReference.x, pointOfReference.y - 52)];
+            [[self.buttons lastObject] setCenter:pointOfReference];
             pointOfReference = CGPointMake(pointOfReference.x, pointOfReference.y - 52);
             whereToStop = (int)self.buttons.count - 2;
         } else {
