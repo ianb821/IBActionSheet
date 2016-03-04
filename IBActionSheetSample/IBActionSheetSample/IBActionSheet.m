@@ -680,7 +680,7 @@ CGRect adjustedScreenBounds()
     [theView insertSubview:self.transparentView belowSubview:self];
     
     float height = CGRectGetHeight(adjustedScreenBounds());
-    float x = CGRectGetWidth(CGRectApplyAffineTransform(theView.bounds, theView.transform)) / 2.0;
+    float x = CGRectGetWidth(theView.bounds) / 2.0;
     
     self.center = CGPointMake(x, height + CGRectGetHeight(self.frame) / 2.0);
     self.transparentView.center = CGPointMake(x, height / 2.0);
