@@ -5,7 +5,7 @@ IBActionSheet
 [![Pod License](https://img.shields.io/cocoapods/l/IBActionSheet.svg?style=flat)](http://cocoadocs.org/docsets/IBActionSheet)
 
 Fully customizable iOS 7/8 style UIActionSheet replacement.  Compatible with iOS 5, 6, 7, and 8.
-##Features
+## Features
 
 By default, IBActionSheet mimics the iOS 7/8 UIActionSheet exactly:
 
@@ -23,11 +23,11 @@ You then have the option to change:
  - The button and title font
  - The effect when a button is pressed
 
-####A simple example is shown here:
+#### A simple example is shown here:
 
 ![Colored](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Colored.png)
 
-####An extreme example with every element of the action sheet customized is show here (landscape):
+#### An extreme example with every element of the action sheet customized is show here (landscape):
 
 ![Funky](https://raw.github.com/ianb821/IBActionSheet/master/Pictures/Funky_Landscape.png)
 
@@ -39,7 +39,7 @@ All but the 'button press' effects can be customized for the whole action sheet,
  - Reverse Colors (Same as highlight, but it reverses background and text colors)
 
 
-##Usage
+## Usage
 
 IBActionSheet offers the same functionality as the UIActionSheet, including things like:
 
